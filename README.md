@@ -4,7 +4,7 @@ FloatingText 是一个能够在任何控件之上执行漂浮效果动画的控�
 
 目前已有的漂浮效果有 '位移漂浮' ，'缩放漂浮'，'曲线路径漂浮',更重要的是 FloatingText 能够自定义漂浮效果.
 
-<img src="/demo.gif"  />
+<img src="/demo.gif" width="540" height="960" />
 
 
 
