@@ -12,6 +12,8 @@ FloatingText 是一个能够在任何控件之上执行漂浮效果动画的控�
 
 1. 使用 FloatingText.FloatingTextBuilder 去创建一个FloatingText，通过FloatingTextBuilder可以配置下面几个属性：
 
+```
+
 final FloatingText   floatingText = new FloatingText.FloatingTextBuilder(Activity)
                 .textColor(Color.RED) // floating text color
                 .textSize(100)   // floating text size
@@ -22,15 +24,19 @@ final FloatingText   floatingText = new FloatingText.FloatingTextBuilder(Activit
                 .floatingPathEffect(FloatingPathEffect) // 通过FloatingPathEffect能够自定义漂浮的路径
                 .build();
 
+```
+
 2.启动漂浮效果
+
+```
              floatingText.attach2Window(); //将FloatingText贴附在Window上
              floatingText.startFly(View); // 传入一个View，FloatingText 就会相对于这个View执行漂浮效果
-
+```
 
 
 ## 自定义：
 
-1.自定义漂浮动画
+#### 1.自定义漂浮动画
 
  通过实现 FloatingAnimator 接口可以实现自定义漂浮动画：
 
@@ -97,7 +103,7 @@ public class ScaleFloatingAnimator extends ReboundFloatingAnimator {
 
 ```
 
-2.自定义漂浮路径
+#### 2.自定义漂浮路径
 
 通过实现 FloatingPathEffect 和 FloatingPathAnimator 可以自定义路径动画
 
@@ -140,7 +146,7 @@ public class CurveFloatingPathEffect implements FloatingPathEffect {
 
 ```
 
-- 定义路径漂浮动画
+####  3.定义路径漂浮动画
 
 当使用 FloatingPathEffect 定义完 路径后，就可以实现 BaseFloatingPathAnimator 来执行路径动画
 
