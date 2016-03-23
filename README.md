@@ -52,7 +52,7 @@ public interface FloatingAnimator {
 当执行动画时 FloatingAnimator 的 applyFloatingAnimation 方法会被回调，所以可以在 applyFloatingAnimation 中执行动画。
 
 
-__ ReboundFloatingAnimator：__
+**ReboundFloatingAnimator**
 
 ReboundFloatingAnimator 实现了 FloatingAnimator 并提供回弹功能，ReboundFloatingAnimator 使用 Facebook 的回弹动画库Rebound。
 
