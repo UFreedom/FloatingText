@@ -60,7 +60,7 @@ ReboundFloatingAnimator 实现了 FloatingAnimator 并提供回弹功能，Rebou
 - 使用 `createSpringByTensionAndFriction` 配置回弹动画的张力和摩擦力，并创建Spring
 - 调用 `transition(float progress, float startValue, float endValue)` 并传入当前动画的进度，动画的起始值，结束值参数可以获取当前的动画值
 
-目前库内的 ScaleFloatingAnimator ，TranslateFloatingAnimator，BaseFloatingPathAnimator 都是实现了 ReboundFloatingAnimator。
+目前库内的 [ScaleFloatingAnimator](https://github.com/UFreedom/FloatingText/blob/master/FloatingTextLibrary%2Fsrc%2Fmain%2Fjava%2Fcom%2Fufreedom%2Feffect%2FScaleFloatingAnimator.java)  ，[TranslateFloatingAnimator](https://github.com/UFreedom/FloatingText/blob/master/FloatingTextLibrary%2Fsrc%2Fmain%2Fjava%2Fcom%2Fufreedom%2Feffect%2FTranslateFloatingAnimator.java)，[BaseFloatingPathAnimator](https://github.com/UFreedom/FloatingText/blob/master/FloatingTextLibrary%2Fsrc%2Fmain%2Fjava%2Fcom%2Fufreedom%2FBaseFloatingPathAnimator.java)都是实现了 ReboundFloatingAnimator。
 
 例如 缩放回弹效果: ScaleFloatingAnimator
 
