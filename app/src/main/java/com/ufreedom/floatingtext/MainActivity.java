@@ -23,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
         final FloatingText   normalFloatingText = new FloatingText.FloatingTextBuilder(MainActivity.this)
                 .textColor(Color.RED)
                 .textSize(100)
-                .textContent("+1000").build();
+                .textContent("+1000")
+                .build();
         normalFloatingText.attach2Window();
         
         assert normalView != null;
