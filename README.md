@@ -7,7 +7,6 @@ FloatingText 是一个能够在任何控件之上执行漂浮效果动画的控�
 <img src="/demo.gif" width="270" height="480" />
 
 
-
 ## 使用:
 
 1. 使用 FloatingText.FloatingTextBuilder 去创建一个FloatingText，通过FloatingTextBuilder可以配置下面几个属性：
