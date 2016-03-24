@@ -16,7 +16,9 @@ Now we have 'Scale Floating','Scale Floating','Curve Floating',and you can also 
 
 Run in Android 3.0 +
 
-## Installation
+## Download [ ![Download](https://api.bintray.com/packages/ufreedom/maven/FloatingText/images/download.svg) ](https://bintray.com/ufreedom/maven/FloatingText/_latestVersion)
+
+
 
 
 
