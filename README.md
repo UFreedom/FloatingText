@@ -1,29 +1,41 @@
 # FloatingText
 
-FloatingText 是一个能够在任何控件之上执行漂浮效果动画的控件，
+FloatingText is a text widget that can floating above view with animation .
 
-目前已有的漂浮效果有 '位移漂浮' ，'缩放漂浮'，'曲线路径漂浮',更重要的是 FloatingText 能够自定义漂浮效果.
+Now we have 'Scale Floating','Scale Floating','Curve Floating',and you can also design custom a animation.
+
+[中文说明](https://github.com/UFreedom/FloatingText/README_CN.md)
+
 
 <img src="/demo.gif" width="270" height="480" />
 
 
-## 使用:
+## Requirements
 
-1. 使用 FloatingText.FloatingTextBuilder 去创建一个FloatingText，通过FloatingTextBuilder可以配置下面几个属性：
+Run in Android 3.0 +
+
+## Installation
+
+
+
+
+## Usage:
+
+1. Use FloatingText.FloatingTextBuilder to create a FloatingText：
 
 ```
 
  FloatingText   floatingText = new FloatingText.FloatingTextBuilder(Activity)
-                               .textColor(Color.RED) // 漂浮字体的颜色
-                               .textSize(100)   // 浮字体的大小
-                               .textContent("+1000") // 浮字体的内容
-                               .offsetX(100) // FloatingText 相对其所贴附View的水平位移偏移量
-                               .offsetY(100) // FloatingText 相对其所贴附View的垂直位移偏移量
-                               .floatingAnimatorEffect(FloatingAnimator) // 漂浮动画
-                               .floatingPathEffect(FloatingPathEffect) // 漂浮的路径
+                               .textColor(Color.RED) // floating  text color
+                               .textSize(100)   // floating  text size
+                               .textContent("+1000") // floating  text content
+                               .offsetX(100) // the x offset  relate to the attached view
+                               .offsetY(100) // the y offset  relate to the attached view  
+                               .floatingAnimatorEffect(FloatingAnimator) // floating animation
+                               .floatingPathEffect(FloatingPathEffect) // floating path
                                .build();
 
-floatingText.attach2Window(); //将FloatingText贴附在Window上
+floatingText.attach2Window(); // let FloatingText attached to the Window
 
 
 ```
@@ -31,15 +43,15 @@ floatingText.attach2Window(); //将FloatingText贴附在Window上
 2.启动漂浮效果
 
 ```
-             floatingText.startFloating(View); // 传入一个View，FloatingText 就会相对于这个View执行漂浮效果
+             floatingText.startFloating(View); // FloatingText do floating animation relate to the view
 ```
 
 
-## 自定义：
+## Customisation:
 
-#### 1.自定义漂浮动画
+#### 1.Floating Animation
 
- 通过实现 `FloatingAnimator` 接口可以实现自定义漂浮动画：
+ implements `FloatingAnimator` interface and do animation in applyFloatingAnimation method：
 
 ```
 public interface FloatingAnimator {
@@ -52,15 +64,19 @@ public interface FloatingAnimator {
 
 **[ReboundFloatingAnimator](https://github.com/UFreedom/FloatingText/blob/master/FloatingTextLibrary%2Fsrc%2Fmain%2Fjava%2Fcom%2Fufreedom%2Feffect%2FReboundFloatingAnimator.java)**
 
-`ReboundFloatingAnimator` 实现了 FloatingAnimator 并提供回弹功能，ReboundFloatingAnimator 使用 Facebook 的回弹动画库 [Rebound](https://github.com/facebook/rebound)。
+`ReboundFloatingAnimator` implements FloatingAnimator and support rebound effect.the rebound animation use  Facebook library [Rebound](https://github.com/facebook/rebound)。
 
-- 使用 `createSpringByBouncinessAndSpeed` 配置回弹动画的弹力和速度，并创建Spring。
-- 使用 `createSpringByTensionAndFriction` 配置回弹动画的张力和摩擦力，并创建Spring
-- 调用 `transition(float progress, float startValue, float endValue)` 并传入当前动画的进度，动画的起始值，结束值可以获取当前的动画值
+- `createSpringByBouncinessAndSpeed` : config rebound animation width bounciness and speed
+- `createSpringByTensionAndFriction` : config rebound animation width tension and friction
+- `transition(float progress, float startValue, float endValue)`:
 
-目前库内的 [ScaleFloatingAnimator](https://github.com/UFreedom/FloatingText/blob/master/FloatingTextLibrary%2Fsrc%2Fmain%2Fjava%2Fcom%2Fufreedom%2Feffect%2FScaleFloatingAnimator.java)  ，[TranslateFloatingAnimator](https://github.com/UFreedom/FloatingText/blob/master/FloatingTextLibrary%2Fsrc%2Fmain%2Fjava%2Fcom%2Fufreedom%2Feffect%2FTranslateFloatingAnimator.java)，[BaseFloatingPathAnimator](https://github.com/UFreedom/FloatingText/blob/master/FloatingTextLibrary%2Fsrc%2Fmain%2Fjava%2Fcom%2Fufreedom%2FBaseFloatingPathAnimator.java)都是实现了 `ReboundFloatingAnimator`。
+progress : the progress of current animation
+startValue : the start value of your animation
+endValue : the end value of your animation
 
-例如 缩放回弹效果: `ScaleFloatingAnimator`
+In this library : [ScaleFloatingAnimator](https://github.com/UFreedom/FloatingText/blob/master/FloatingTextLibrary%2Fsrc%2Fmain%2Fjava%2Fcom%2Fufreedom%2Feffect%2FScaleFloatingAnimator.java)  ，[TranslateFloatingAnimator](https://github.com/UFreedom/FloatingText/blob/master/FloatingTextLibrary%2Fsrc%2Fmain%2Fjava%2Fcom%2Fufreedom%2Feffect%2FTranslateFloatingAnimator.java)，[BaseFloatingPathAnimator](https://github.com/UFreedom/FloatingText/blob/master/FloatingTextLibrary%2Fsrc%2Fmain%2Fjava%2Fcom%2Fufreedom%2FBaseFloatingPathAnimator.java) all implements `ReboundFloatingAnimator` interface。
+
+For example : `ScaleFloatingAnimator`
 
 ```
 public class ScaleFloatingAnimator extends ReboundFloatingAnimator {
@@ -101,11 +117,11 @@ public class ScaleFloatingAnimator extends ReboundFloatingAnimator {
 
 ```
 
-#### 2.自定义漂浮路径
+#### 2.Floating Path
 
-通过实现 `FloatingPathEffect` 和 `FloatingPathAnimator` 可以自定义路径动画
+implements `FloatingPathEffect` and `FloatingPathAnimator` interface can custom you own floating path
 
-- `FloatingPath` 代表浮动路径
+- `FloatingPath` is the floating path
 ```
 
 public interface FloatingPathEffect {
@@ -116,10 +132,10 @@ public interface FloatingPathEffect {
 
 ```
 
-使用 Path 创建路径，并调用 FloatingPath.create(Path path, boolean forceClose) 创建一个漂浮路径。
-其中 forceClose 代表是否对路径进行闭合处理，一般情况下为 false。
+create a path  and then  use `FloatingPath.create(Path path, boolean forceClose)` to create floating path。
+if the second param forceClose's value is true,the path will be force to close .
 
-例如：CurveFloatingPathEffect 实现了曲线路径效果:
+For example：CurveFloatingPathEffect :
 
 ```
 public class CurveFloatingPathEffect implements FloatingPathEffect {
@@ -138,11 +154,11 @@ public class CurveFloatingPathEffect implements FloatingPathEffect {
 
 ```
 
-####  3.定义路径漂浮动画
+####  3.Floating Path Animation
 
-当使用 `FloatingPathEffect` 定义完 路径后，就可以实现 `BaseFloatingPathAnimator` 来执行路径动画
+after use  `FloatingPathEffect` define the path，you can implements the  `BaseFloatingPathAnimator` interface and do path animation.
 
-例如 `CurvePathFloatingAnimator` 的效果是曲线漂浮动画：
+For example: `CurvePathFloatingAnimator` ：
 
 
 ```
@@ -173,6 +189,6 @@ public class CurvePathFloatingAnimator extends BaseFloatingPathAnimator {
 }
 ```
 
-- 在 `applyFloatingPathAnimation(final FloatingTextView view, float start, float end)` 实现路径动画。参数 start 代表路径的开始位置，end代表路径的结束位置.
+-  `applyFloatingPathAnimation(final FloatingTextView view, float start, float end)` : do animation ,the param 'start' is the value is the start path value which you define ,the param 'end' is the value is the end path value which you define .
 
-- 通过 `getFloatingPosition(float progress)` 可以获取当前路径的位置信息 [0]代表x值，[1]代表y值
+- 通过 `getFloatingPosition(float progress)` : get the current path value ,[0] is x，[1] is y. 

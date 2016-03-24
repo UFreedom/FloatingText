@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 /**
  * UFreedom
+ * 
+ * 
  */
 public class FloatingTextView extends TextView {
 
@@ -94,43 +96,7 @@ public class FloatingTextView extends TextView {
     }
 
 
-        
-    /*@Override
-    public void layout(int l, int t, int r, int b) {
-
-       Log.e(TAG," -----layout 原始的----: left: "+l+" top: "+t+" right:"+r+" bottom:"+b);
-       if (floatingTextBuilder == null || mAttachedView == null){
-            Log.e(TAG," -----layout- floatingTextBuilder is null-----");
-            super.layout(l, t, r, b);
-        }else {
-            Rect rect = new Rect();
-
-           Log.e(TAG," mAttachedView: "+mAttachedView.hashCode());
-
-
-            mAttachedView.getGlobalVisibleRect(rect);
-            int[] location = new int[2];
-            getLocationOnScreen(location);
-            rect.offset(-location[0], -location[1]);
-
-            Log.e(TAG," mes: "+getMeasuredWidth()+" w: "+getWidth());
-
-            Log.e(TAG," -----Rect----: left: "+rect.left+" top: "+rect.top+" right:"+rect.right+" bottom:"+rect.bottom);
-
-
-           int left = rect.left + (rect.width() - getMeasuredWidth()) / 2;
-            int top = rect.top + (rect.height() - getMeasuredHeight()) / 2;
-           
-           
-           
-            int bottom = top + getMeasuredHeight();
-            int right = left + getMeasuredWidth();
-            Log.e(TAG," -----layout----: left: "+left+" top: "+top+" right:"+right+" bottom:"+bottom);
-            super.layout(left,top,right,bottom);
-        }
-       
-    }*/
-
+    
     public void flyText(View view) {
 
         layout(0,0,0,0);

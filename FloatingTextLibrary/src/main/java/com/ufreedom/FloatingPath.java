@@ -5,6 +5,7 @@ import android.graphics.PathMeasure;
 
 /**
  * Author UFreedom
+ * 
  */
 public class FloatingPath {
 

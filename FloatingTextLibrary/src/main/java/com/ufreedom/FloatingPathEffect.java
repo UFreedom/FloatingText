@@ -2,6 +2,8 @@ package com.ufreedom;
 
 /**
  * Author UFreedom
+ * 
+ * 
  */
 public interface FloatingPathEffect {
 
