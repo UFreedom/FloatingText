@@ -198,9 +198,9 @@ public class CurvePathFloatingAnimator extends BaseFloatingPathAnimator {
 - `getFloatingPosition(float progress)` : get the current path value ,[0] is x，[1] is y.
 
 
-![License](https://img.shields.io/hexpm/l/plug.svg)
 
-License
+
+License ![License](https://img.shields.io/hexpm/l/plug.svg)
 --------
 
     Copyright 2015 UFreedom
