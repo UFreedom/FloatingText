@@ -7,8 +7,7 @@ import com.facebook.rebound.SpringUtil;
 import com.ufreedom.FloatingAnimator;
 
 /**
- * Author SunMeng
- * Date : 2016 三月 16
+ * Author UFreedom
  */
 public abstract class ReboundFloatingAnimator implements FloatingAnimator {
 
@@ -32,5 +31,5 @@ public abstract class ReboundFloatingAnimator implements FloatingAnimator {
     protected float transition(float progress, float startValue, float endValue) {
         return (float) SpringUtil.mapValueFromRangeToRange(progress, 0, 1, startValue, endValue);
     }
-    
+
 }

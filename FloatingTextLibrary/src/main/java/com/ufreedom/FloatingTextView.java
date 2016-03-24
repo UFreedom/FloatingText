@@ -4,11 +4,9 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.PathMeasure;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -24,7 +22,6 @@ public class FloatingTextView extends TextView {
     private FloatingText.FloatingTextBuilder floatingTextBuilder;
     private Paint mTextPaint;
  
-    private Path mEffectPath;
     private Paint mPathPaint;
     private PathMeasure mPathMeasure;
     private View mAttachedView;
@@ -61,14 +58,9 @@ public class FloatingTextView extends TextView {
         
         if (floatingTextBuilder == null ){
             super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
-            Log.e(TAG," -----onMeasure-----floatingTextBuilder == null || mAttachedView == null -");
             return;
         }
-
-
-        Log.e(TAG," -----onMeasure------");
-
+        
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
@@ -151,21 +143,18 @@ public class FloatingTextView extends TextView {
         getLocationOnScreen(location);
         rect.offset(-location[0], -location[1]);
         
-
-        Log.e(TAG," mes: "+getMeasuredWidth()+" w: "+getWidth());
-
+        
         int left = rect.left + (rect.width() - getMeasuredWidth()) / 2 + floatingTextBuilder.getOffsetX();
         int top = rect.top + (rect.height() - getMeasuredHeight()) / 2 + + floatingTextBuilder.getOffsetY();
         int bottom = top + getMeasuredHeight();
         int right = left + getMeasuredWidth();
-        Log.e(TAG," -----flyText----: left: "+left+" top: "+top+" right:"+right+" bottom:"+bottom);
+
         layout(left,top,right,bottom);
         invalidate();
         
         FloatingPathEffect floatingPathEffect = floatingTextBuilder.getFloatingPathEffect();
         if (floatingPathEffect != null){
             FloatingPath floatingPath = floatingPathEffect.getFloatingPath(this);
-            mEffectPath = floatingPath.getPath();
             mPathMeasure = floatingPath.getPathMeasure();
         }
         
@@ -200,7 +189,6 @@ public class FloatingTextView extends TextView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (floatingTextBuilder == null || mAttachedView == null) {
-            Log.e(TAG, "----onDraw----->  flyTextBuilder null or mAttachedView null");
             return;
         }
         

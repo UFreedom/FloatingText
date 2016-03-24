@@ -10,8 +10,8 @@ import com.facebook.rebound.Spring;
 import com.ufreedom.FloatingTextView;
 
 /**
- * Author SunMeng
- * Date : 2016 三月 16
+ * Author UFreedom
+ * 
  */
 public class TranslateFloatingAnimator extends ReboundFloatingAnimator {
 
@@ -23,6 +23,7 @@ public class TranslateFloatingAnimator extends ReboundFloatingAnimator {
         translateY = -200f;
         duration = 1500;
     }
+    
 
     public TranslateFloatingAnimator(float translateY, long duration) {
         this.translateY = translateY;
