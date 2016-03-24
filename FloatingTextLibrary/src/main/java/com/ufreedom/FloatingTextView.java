@@ -164,8 +164,9 @@ public class FloatingTextView extends TextView {
         
         FloatingPathEffect floatingPathEffect = floatingTextBuilder.getFloatingPathEffect();
         if (floatingPathEffect != null){
-            mEffectPath = floatingPathEffect.getFloatingPath(this);
-            mPathMeasure = floatingPathEffect.getFloatPathMeasure(mEffectPath,this);
+            FloatingPath floatingPath = floatingPathEffect.getFloatingPath(this);
+            mEffectPath = floatingPath.getPath();
+            mPathMeasure = floatingPath.getPathMeasure();
         }
         
         FloatingAnimator floatingAnimator = floatingTextBuilder.getFloatingAnimator();

@@ -21,7 +21,7 @@ public class FloatingText {
     }
 
 
-    public void startFly(View view) {
+    public void startFloating(View view) {
         mFloatingTextView.flyText(view);
     }
 

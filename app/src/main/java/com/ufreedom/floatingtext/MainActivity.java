@@ -5,9 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.ufreedom.FloatingText;
 import com.ufreedom.effect.CurveFloatingPathEffect;
 import com.ufreedom.effect.CurvePathFloatingAnimator;
-import com.ufreedom.FloatingText;
 import com.ufreedom.effect.ScaleFloatingAnimator;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         normalView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                normalFloatingText.startFly(view);
+                normalFloatingText.startFloating(view);
             }
         });
 
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         curveView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cubicFloatingText.startFly(view);
+                cubicFloatingText.startFloating(view);
             }
         });
         
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         scaleView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                scaleFloatingText.startFly(view);
+                scaleFloatingText.startFloating(view);
             }
         });
         

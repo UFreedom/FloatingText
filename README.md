@@ -14,21 +14,23 @@ FloatingText 是一个能够在任何控件之上执行漂浮效果动画的控�
 ```
 
  FloatingText   floatingText = new FloatingText.FloatingTextBuilder(Activity)
-                .textColor(Color.RED) // 漂浮字体的颜色
-                .textSize(100)   // 浮字体的大小
-                .textContent("+1000") // 浮字体的内容
-                .offsetX(100) // FloatingText 相对其所贴附View的水平位移偏移量
-                .offsetY(100) // FloatingText 相对其所贴附View的垂直位移偏移量
-                .floatingAnimatorEffect(FloatingAnimator) // 通过FloatingAnimator能够自定义漂浮动画
-                .floatingPathEffect(FloatingPathEffect) // 通过FloatingPathEffect能够自定义漂浮的路径
-                .build();
+                               .textColor(Color.RED) // 漂浮字体的颜色
+                               .textSize(100)   // 浮字体的大小
+                               .textContent("+1000") // 浮字体的内容
+                               .offsetX(100) // FloatingText 相对其所贴附View的水平位移偏移量
+                               .offsetY(100) // FloatingText 相对其所贴附View的垂直位移偏移量
+                               .floatingAnimatorEffect(FloatingAnimator) // 通过FloatingAnimator能够自定义漂浮动画
+                               .floatingPathEffect(FloatingPathEffect) // 通过FloatingPathEffect能够自定义漂浮的路径
+                               .build();
+
+floatingText.attach2Window(); //将FloatingText贴附在Window上
+
 
 ```
 
 2.启动漂浮效果
 
 ```
-             floatingText.attach2Window(); //将FloatingText贴附在Window上
              floatingText.startFly(View); // 传入一个View，FloatingText 就会相对于这个View执行漂浮效果
 ```
 
@@ -53,11 +55,11 @@ public interface FloatingAnimator {
 
 **[ReboundFloatingAnimator](https://github.com/UFreedom/FloatingText/blob/master/FloatingTextLibrary%2Fsrc%2Fmain%2Fjava%2Fcom%2Fufreedom%2Feffect%2FReboundFloatingAnimator.java)**
 
-`ReboundFloatingAnimator` 实现了 FloatingAnimator 并提供回弹功能，ReboundFloatingAnimator 使用 Facebook 的回弹动画库Rebound。
+`ReboundFloatingAnimator` 实现了 FloatingAnimator 并提供回弹功能，ReboundFloatingAnimator 使用 Facebook 的回弹动画库 [Rebound](https://github.com/facebook/rebound)。
 
 - 使用 `createSpringByBouncinessAndSpeed` 配置回弹动画的弹力和速度，并创建Spring。
 - 使用 `createSpringByTensionAndFriction` 配置回弹动画的张力和摩擦力，并创建Spring
-- 调用 `transition(float progress, float startValue, float endValue)` 并传入当前动画的进度，动画的起始值，结束值参数可以获取当前的动画值
+- 调用 `transition(float progress, float startValue, float endValue)` 并传入当前动画的进度，动画的起始值，结束值可以获取当前的动画值
 
 目前库内的 [ScaleFloatingAnimator](https://github.com/UFreedom/FloatingText/blob/master/FloatingTextLibrary%2Fsrc%2Fmain%2Fjava%2Fcom%2Fufreedom%2Feffect%2FScaleFloatingAnimator.java)  ，[TranslateFloatingAnimator](https://github.com/UFreedom/FloatingText/blob/master/FloatingTextLibrary%2Fsrc%2Fmain%2Fjava%2Fcom%2Fufreedom%2Feffect%2FTranslateFloatingAnimator.java)，[BaseFloatingPathAnimator](https://github.com/UFreedom/FloatingText/blob/master/FloatingTextLibrary%2Fsrc%2Fmain%2Fjava%2Fcom%2Fufreedom%2FBaseFloatingPathAnimator.java)都是实现了 `ReboundFloatingAnimator`。
 
@@ -109,37 +111,31 @@ public class ScaleFloatingAnimator extends ReboundFloatingAnimator {
 - `FloatingPathEffect` 代表浮动路径
 ```
 
-public interface   FloatingPathEffect {
+public interface FloatingPathEffect {
 
-    abstract Path getFloatingPath(FloatingTextView floatingTextView);
-
-    abstract PathMeasure getFloatPathMeasure(Path path,FloatingTextView floatingTextView);
+    abstract FloatingPath getFloatingPath(FloatingTextView floatingTextView);
 
 }
 
 ```
 
-其中 `getFloatingPath(FloatingTextView floatingTextView)`用于配置 浮动的路径，`getFloatPathMeasure(Path path,FloatingTextView floatingTextView)` 用于计算路径并使用动画执行路径
+使用 Path 创建路径，并调用 FloatingPath.create(Path path, boolean forceClose) 创建一个漂浮路径。
+其中 forceClose 代表是否对路径进行闭合处理，一般情况下为 false。
 
 例如：CurveFloatingPathEffect 实现了曲线路径效果:
 
 ```
 public class CurveFloatingPathEffect implements FloatingPathEffect {
 
+  @Override
+     public FloatingPath getFloatingPath(FloatingTextView floatingTextView) {
+         Path path = new Path();
+         path.moveTo(0, 0);
+         path.quadTo(-100, -200, 0, -300);
+         path.quadTo(200, -400, 0, -500);
+         return FloatingPath.create(path, false);
+     }
 
-    @Override
-    public Path getFloatingPath(FloatingTextView floatingTextView) {
-        Path path = new Path();
-        path.moveTo(0, 0);
-        path.quadTo(-100, -200, 0, -300);
-        path.quadTo(200, -400, 0, -500);
-        return path;
-    }
-
-    @Override
-    public PathMeasure getFloatPathMeasure(Path path, FloatingTextView floatingTextView) {
-        return new PathMeasure(path, false);
-    }
 }
 
 
@@ -176,7 +172,6 @@ public abstract class BaseFloatingPathAnimator extends ReboundFloatingAnimator i
 
 - 通过 `getFloatingPosition(float progress)` 可以获取当前路径动画的位置信息 [0]代表x值，[1]代表y值
 
-- 在 `applyFloatingPathAnimation(final FloatingTextView view, float start, float end)` 实现路径动画
-参数 start 代表路径的开始位置，end代表路径的结束位置.
+- 在 `applyFloatingPathAnimation(final FloatingTextView view, float start, float end)` 实现路径动画。参数 start 代表路径的开始位置，end代表路径的结束位置.
 
-例如 `CurvePathFloatingAnimator` 的效果是曲线漂浮动画:
+例如 `CurvePathFloatingAnimator` 的效果是曲线漂浮动画
