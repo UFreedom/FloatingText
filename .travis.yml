@@ -5,10 +5,16 @@ android:
     - build-tools-22.0.1
     - android-22
     - extra
+   - sys-img-armeabi-v7a-android-22
 
 sudo: false
 
-
+env:
+  global:
+   # install timeout in minutes (2 minutes by default)
+    - ADB_INSTALL_TIMEOUT=8
+    
+    
 # Emulator Management: Create, Start and Wait
 before_script:
   - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
