@@ -4,7 +4,7 @@ FloatingText is a text widget that can floating above view with animation .
 
 Now we have 'Scale Floating','Scale Floating','Curve Floating',and you can also design custom a animation.
 
-[中文说明](https://github.com/UFreedom/FloatingText/README_CN.md)
+[中文说明](https://github.com/UFreedom/FloatingText/blob/master/README_CN.md)
 
 
 <img src="/demo.gif" width="270" height="480" />
@@ -40,7 +40,7 @@ floatingText.attach2Window(); // let FloatingText attached to the Window
 
 ```
 
-2.启动漂浮效果
+2.start floating
 
 ```
              floatingText.startFloating(View); // FloatingText do floating animation relate to the view
@@ -191,4 +191,4 @@ public class CurvePathFloatingAnimator extends BaseFloatingPathAnimator {
 
 -  `applyFloatingPathAnimation(final FloatingTextView view, float start, float end)` : do animation ,the param 'start' is the value is the start path value which you define ,the param 'end' is the value is the end path value which you define .
 
-- 通过 `getFloatingPosition(float progress)` : get the current path value ,[0] is x，[1] is y. 
+- `getFloatingPosition(float progress)` : get the current path value ,[0] is x，[1] is y.
