@@ -9,9 +9,3 @@ android:
     
     licenses:
        - 'android-sdk-license-.+'
-       
-
-
-script:
-  - android list target
-  - ./gradlew connectedAndroidTest
