@@ -16,8 +16,8 @@ import com.ufreedom.FloatingTextView;
 public class TranslateFloatingAnimator extends ReboundFloatingAnimator {
 
 
-    public float translateY;
-    public long duration;
+    private float translateY;
+    private long duration;
 
     public TranslateFloatingAnimator() {
         translateY = -200f;

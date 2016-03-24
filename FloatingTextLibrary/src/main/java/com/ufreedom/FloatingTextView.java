@@ -16,7 +16,7 @@ import android.widget.TextView;
  */
 public class FloatingTextView extends TextView {
 
-    public static final String TAG = "FloatingTextView";
+    private static final String TAG = "FloatingTextView";
     private static final int PATH_WIDTH = 2;
 
     private FloatingText.FloatingTextBuilder floatingTextBuilder;

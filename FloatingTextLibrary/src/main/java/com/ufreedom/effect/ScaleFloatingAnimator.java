@@ -13,7 +13,7 @@ import com.ufreedom.FloatingTextView;
  */
 public class ScaleFloatingAnimator extends ReboundFloatingAnimator {
 
-    public long duration;
+    private long duration;
 
     public ScaleFloatingAnimator() {
         duration = 1000;
