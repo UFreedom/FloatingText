@@ -1,5 +1,7 @@
 # FloatingText
 
+[![Build Status](https://travis-ci.org/UFreedom/FloatingText.svg?branch=master)](https://travis-ci.org/UFreedom/FloatingText)
+
 FloatingText is a text widget that can floating above view with animation .
 
 Now we have 'Scale Floating','Scale Floating','Curve Floating',and you can also design custom a animation.
