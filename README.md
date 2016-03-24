@@ -31,7 +31,7 @@ floatingText.attach2Window(); //将FloatingText贴附在Window上
 2.启动漂浮效果
 
 ```
-             floatingText.startFly(View); // 传入一个View，FloatingText 就会相对于这个View执行漂浮效果
+             floatingText.startFloating(View); // 传入一个View，FloatingText 就会相对于这个View执行漂浮效果
 ```
 
 
