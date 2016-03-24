@@ -1,11 +1,8 @@
 language: android
-jdk: oraclejdk7
-
 android:
   components:
     - build-tools-22.0.1
     - android-22
     - extra
-   - sys-img-armeabi-v7a-android-22
-
+    - sys-img-armeabi-v7a-android-22
 sudo: false
