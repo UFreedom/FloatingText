@@ -19,8 +19,8 @@ FloatingText 是一个能够在任何控件之上执行漂浮效果动画的控�
                                .textContent("+1000") // 浮字体的内容
                                .offsetX(100) // FloatingText 相对其所贴附View的水平位移偏移量
                                .offsetY(100) // FloatingText 相对其所贴附View的垂直位移偏移量
-                               .floatingAnimatorEffect(FloatingAnimator) // 通过FloatingAnimator能够自定义漂浮动画
-                               .floatingPathEffect(FloatingPathEffect) // 通过FloatingPathEffect能够自定义漂浮的路径
+                               .floatingAnimatorEffect(FloatingAnimator) // 漂浮动画
+                               .floatingPathEffect(FloatingPathEffect) // 漂浮的路径
                                .build();
 
 floatingText.attach2Window(); //将FloatingText贴附在Window上
@@ -49,9 +49,6 @@ public interface FloatingAnimator {
  }
 
 ```
-
-当执行动画时 `FloatingAnimator` 的 `applyFloatingAnimation` 方法会被回调，所以可以在 `applyFloatingAnimation` 中执行动画。
-
 
 **[ReboundFloatingAnimator](https://github.com/UFreedom/FloatingText/blob/master/FloatingTextLibrary%2Fsrc%2Fmain%2Fjava%2Fcom%2Fufreedom%2Feffect%2FReboundFloatingAnimator.java)**
 
@@ -108,7 +105,7 @@ public class ScaleFloatingAnimator extends ReboundFloatingAnimator {
 
 通过实现 `FloatingPathEffect` 和 `FloatingPathAnimator` 可以自定义路径动画
 
-- `FloatingPathEffect` 代表浮动路径
+- `FloatingPath` 代表浮动路径
 ```
 
 public interface FloatingPathEffect {
@@ -145,33 +142,37 @@ public class CurveFloatingPathEffect implements FloatingPathEffect {
 
 当使用 `FloatingPathEffect` 定义完 路径后，就可以实现 `BaseFloatingPathAnimator` 来执行路径动画
 
+例如 `CurvePathFloatingAnimator` 的效果是曲线漂浮动画：
+
+
 ```
-public abstract class BaseFloatingPathAnimator extends ReboundFloatingAnimator implements FloatingPathAnimator {
-
-    private PathMeasure pathMeasure;
-    private float pos[];
-
-    public float[] getFloatingPosition(float progress) {
-        pathMeasure.getPosTan(progress, pos, null);
-        return pos;
-    }
+public class CurvePathFloatingAnimator extends BaseFloatingPathAnimator {
 
     @Override
-    public void applyFloatingAnimation(FloatingTextView view) {
-        pathMeasure = view.getPathMeasure();
-        if (pathMeasure == null) {
-            return;
-        }
-        pos = new float[2];
-        applyFloatingPathAnimation(view,0,pathMeasure.getLength());
+    public void applyFloatingPathAnimation(final FloatingTextView view, float start, float end) {
+
+        ValueAnimator translateAnimator = ObjectAnimator.ofFloat(start, end);
+        translateAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                float value = (float) valueAnimator.getAnimatedValue();
+                float pos[] = getFloatingPosition(value);
+                float x = pos[0];
+                float y = pos[1];
+                view.setTranslationX(x);
+                view.setTranslationY(y);
+
+            }
+        });
+
+        translateAnimator.setDuration(3000);
+        translateAnimator.setStartDelay(50);
+        translateAnimator.start();
+
     }
-
 }
-
 ```
-
-- 通过 `getFloatingPosition(float progress)` 可以获取当前路径动画的位置信息 [0]代表x值，[1]代表y值
 
 - 在 `applyFloatingPathAnimation(final FloatingTextView view, float start, float end)` 实现路径动画。参数 start 代表路径的开始位置，end代表路径的结束位置.
 
-例如 `CurvePathFloatingAnimator` 的效果是曲线漂浮动画
+- 通过 `getFloatingPosition(float progress)` 可以获取当前路径的位置信息 [0]代表x值，[1]代表y值
