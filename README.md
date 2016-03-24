@@ -14,7 +14,7 @@ Now we have 'Scale Floating','Scale Floating','Curve Floating',and you can also 
 
 ## Requirements
 
-Run in Android 3.0 +
+![Requirements](https://img.shields.io/badge/Requirements-Android%203.0%2B-green.svg)
 
 ## Download [ ![Download](https://api.bintray.com/packages/ufreedom/maven/FloatingText/images/download.svg) ](https://bintray.com/ufreedom/maven/FloatingText/_latestVersion)
 
