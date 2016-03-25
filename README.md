@@ -19,9 +19,11 @@ Now we have 'Scale Floating','Scale Floating','Curve Floating',and you can also 
 ## Download [ ![Download](https://api.bintray.com/packages/ufreedom/maven/FloatingText/images/download.svg) ](https://bintray.com/ufreedom/maven/FloatingText/_latestVersion)
 
 
+Add Snapshot repository and add to dependencies:
 
-
-
+dependencies {
+  compile 'com.ufreedom.floatingtext:FloatingTextLibrary:1.0.1'
+}
 
 ## Usage:
 
