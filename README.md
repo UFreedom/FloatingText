@@ -21,9 +21,12 @@ Now we have 'Scale Floating','Scale Floating','Curve Floating',and you can also 
 
 Add Snapshot repository and add to dependencies:
 
+```
 dependencies {
   compile 'com.ufreedom.floatingtext:FloatingTextLibrary:1.0.1'
 }
+```
+
 
 ## Usage:
 
