@@ -50,11 +50,12 @@ floatingText.attach2Window(); // let FloatingText attached to the Window
 
 ```
 
-2.start floating
+2.Start floating
 
 ```
              floatingText.startFloating(View); // FloatingText do floating animation relate to the view
 ```
+
 
 
 ## Customisation:
@@ -67,7 +68,7 @@ floatingText.attach2Window(); // let FloatingText attached to the Window
 
 #### 2.Floating Animation
 
- implements `FloatingAnimator` interface and do animation in applyFloatingAnimation method：
+ Implements `FloatingAnimator` interface and do animation in the `applyFloatingAnimation` method：
 
 ```
 public interface FloatingAnimator {
@@ -80,11 +81,13 @@ public interface FloatingAnimator {
 
 **[ReboundFloatingAnimator](https://github.com/UFreedom/FloatingText/blob/master/FloatingTextLibrary%2Fsrc%2Fmain%2Fjava%2Fcom%2Fufreedom%2Feffect%2FReboundFloatingAnimator.java)**
 
-`ReboundFloatingAnimator` implements FloatingAnimator and support rebound effect.the rebound animation use  Facebook library [Rebound](https://github.com/facebook/rebound)。
+`ReboundFloatingAnimator` implements FloatingAnimator and support rebound animation.The rebound animation is  Facebook's library [Rebound](https://github.com/facebook/rebound)。
 
-- `createSpringByBouncinessAndSpeed` : config rebound animation width bounciness and speed
-- `createSpringByTensionAndFriction` : config rebound animation width tension and friction
-- `transition(float progress, float startValue, float endValue)`:
+There are  three help methods;
+
+- `createSpringByBouncinessAndSpeed` : config rebound  width bounciness and speed
+- `createSpringByTensionAndFriction` : config rebound  width tension and friction
+- `transition(float progress, float startValue, float endValue)`: use the method to get animated value .
 
 progress : the progress of current animation
 startValue : the start value of your animation
@@ -135,7 +138,7 @@ public class ScaleFloatingAnimator extends ReboundFloatingAnimator {
 
 #### 3.Floating Path
 
-implements `FloatingPathEffect` and `FloatingPathAnimator` interface can custom you own floating path
+Implements `FloatingPathEffect` and `FloatingPathAnimator` interface can custom you own floating path animation.
 
 - `FloatingPath` is the floating path
 ```
@@ -148,8 +151,8 @@ public interface FloatingPathEffect {
 
 ```
 
-create a path  and then  use `FloatingPath.create(Path path, boolean forceClose)` to create floating path。
-if the second param forceClose's value is true,the path will be force to close .
+create a path  and then  use `FloatingPath.create(Path path, boolean forceClose)` to create FloatingPath.
+if the forceClose's value of the second param forceClose's value is true,the path will be forced to close .
 
 For example：CurveFloatingPathEffect :
 
@@ -172,7 +175,7 @@ public class CurveFloatingPathEffect implements FloatingPathEffect {
 
 ####  4.Floating Path Animation
 
-after use  `FloatingPathEffect` define the path，you can implements the  `BaseFloatingPathAnimator` interface and do path animation.
+After use  `FloatingPathEffect` to define the path,Then you should implements the  `BaseFloatingPathAnimator` interface and do path animation.
 
 For example: `CurvePathFloatingAnimator` ：
 
@@ -205,9 +208,13 @@ public class CurvePathFloatingAnimator extends BaseFloatingPathAnimator {
 }
 ```
 
--  `applyFloatingPathAnimation(final FloatingTextView view, float start, float end)` : do animation ,the param 'start' is the value is the start path value which you define ,the param 'end' is the value is the end path value which you define .
+-  `applyFloatingPathAnimation(final FloatingTextView view, float start, float end)` :
 
-- `getFloatingPosition(float progress)` : get the current path value ,[0] is x，[1] is y.
+  The param 'start' is the start value of the path,and the param 'end' is the end value of the path.
+
+- `getFloatingPosition(float progress)` :
+
+  get the current animated path value ,[0] is x，[1] is y.
 
 
 
