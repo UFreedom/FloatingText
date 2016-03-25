@@ -49,7 +49,7 @@ floatingText.attach2Window(); //将FloatingText贴附在Window上
 
  FloatingText的坐标依赖于你所贴附的View 即：startFloating(View)中的View.
 
- <img src="/coordinates.png" />
+ <img src="/coordinates.png" width="423" height="419"/>
 
 
 

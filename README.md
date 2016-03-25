@@ -56,7 +56,7 @@ floatingText.attach2Window(); // let FloatingText attached to the Window
 
 #### 1.Coordinates
 
- <img src="/coordinates.png" />
+ <img src="/coordinates.png" width="423" height="419"/>
 
 
 
