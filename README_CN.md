@@ -44,7 +44,16 @@ floatingText.attach2Window(); //将FloatingText贴附在Window上
 
 ## 自定义：
 
-#### 1.自定义漂浮动画
+
+#### 1.坐标系
+
+ FloatingText的坐标依赖于你所贴附的View 即：startFloating(View)中的View.
+
+ <img src="/coordinates.png" />
+
+
+
+#### 2.自定义漂浮动画
 
  通过实现 `FloatingAnimator` 接口可以实现自定义漂浮动画：
 
@@ -108,7 +117,7 @@ public class ScaleFloatingAnimator extends ReboundFloatingAnimator {
 
 ```
 
-#### 2.自定义漂浮路径
+#### 3.自定义漂浮路径
 
 通过实现 `FloatingPathEffect` 和 `FloatingPathAnimator` 可以自定义路径动画
 

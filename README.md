@@ -25,6 +25,7 @@ Now we have 'Scale Floating','Scale Floating','Curve Floating',and you can also 
 
 ## Usage:
 
+
 1. Use FloatingText.FloatingTextBuilder to create a FloatingText：
 
 ```
@@ -53,7 +54,13 @@ floatingText.attach2Window(); // let FloatingText attached to the Window
 
 ## Customisation:
 
-#### 1.Floating Animation
+#### 1.Coordinates
+
+ <img src="/coordinates.png" />
+
+
+
+#### 2.Floating Animation
 
  implements `FloatingAnimator` interface and do animation in applyFloatingAnimation method：
 
@@ -121,7 +128,7 @@ public class ScaleFloatingAnimator extends ReboundFloatingAnimator {
 
 ```
 
-#### 2.Floating Path
+#### 3.Floating Path
 
 implements `FloatingPathEffect` and `FloatingPathAnimator` interface can custom you own floating path
 
@@ -158,7 +165,7 @@ public class CurveFloatingPathEffect implements FloatingPathEffect {
 
 ```
 
-####  3.Floating Path Animation
+####  4.Floating Path Animation
 
 after use  `FloatingPathEffect` define the path，you can implements the  `BaseFloatingPathAnimator` interface and do path animation.
 
