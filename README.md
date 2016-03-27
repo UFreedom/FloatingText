@@ -16,15 +16,17 @@ Now we have 'Scale Floating','Scale Floating','Curve Floating',and you can also 
 
 ![Requirements](https://img.shields.io/badge/Requirements-Android%203.0%2B-green.svg)
 
-## Download [ ![Download](https://api.bintray.com/packages/ufreedom/maven/FloatingText/images/download.svg) ](https://bintray.com/ufreedom/maven/FloatingText/_latestVersion)
+## Download [ ![Download](https://api.bintray.com/packages/ufreedom/maven/FloatingTextLibrary/images/download.svg) ](https://bintray.com/ufreedom/maven/FloatingTextLibrary/_latestVersion)
 
 
 Add Snapshot repository and add to dependencies:
 
 ```
 dependencies {
-  compile 'com.ufreedom.floatingtext:FloatingTextLibrary:1.0.1'
+
+     compile 'com.ufreedom.uikit:FloatingTextLibrary:0.1.0'
 }
+
 ```
 
 
