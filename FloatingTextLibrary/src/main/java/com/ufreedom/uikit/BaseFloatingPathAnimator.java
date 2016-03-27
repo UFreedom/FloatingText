@@ -1,8 +1,8 @@
-package com.ufreedom;
+package com.ufreedom.uikit;
 
 import android.graphics.PathMeasure;
 
-import com.ufreedom.effect.ReboundFloatingAnimator;
+import com.ufreedom.uikit.effect.ReboundFloatingAnimator;
 
 /**
  * Author UFreedom

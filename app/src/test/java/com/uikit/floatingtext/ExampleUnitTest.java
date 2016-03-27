@@ -1,4 +1,4 @@
-package com.ufreedom.floatingtext;
+package com.uikit.floatingtext;
 
 import org.junit.Test;
 

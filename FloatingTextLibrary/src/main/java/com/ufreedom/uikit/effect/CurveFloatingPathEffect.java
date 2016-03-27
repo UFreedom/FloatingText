@@ -1,18 +1,17 @@
-package com.ufreedom.effect;
+package com.ufreedom.uikit.effect;
 
 import android.graphics.Path;
 
-import com.ufreedom.FloatingPath;
-import com.ufreedom.FloatingPathEffect;
-import com.ufreedom.FloatingTextView;
+import com.ufreedom.uikit.FloatingPath;
+import com.ufreedom.uikit.FloatingPathEffect;
+import com.ufreedom.uikit.FloatingTextView;
 
 /**
  * Author UFreedom
  */
 public class CurveFloatingPathEffect implements FloatingPathEffect {
-    
-    
-    
+
+
     @Override
     public FloatingPath getFloatingPath(FloatingTextView floatingTextView) {
         Path path = new Path();

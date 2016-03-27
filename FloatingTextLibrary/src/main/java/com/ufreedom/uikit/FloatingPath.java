@@ -1,4 +1,4 @@
-package com.ufreedom;
+package com.ufreedom.uikit;
 
 import android.graphics.Path;
 import android.graphics.PathMeasure;

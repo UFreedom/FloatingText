@@ -1,4 +1,4 @@
-package com.ufreedom;
+package com.uikit;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

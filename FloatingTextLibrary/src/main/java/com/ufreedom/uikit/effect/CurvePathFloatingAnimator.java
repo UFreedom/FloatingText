@@ -1,4 +1,4 @@
-package com.ufreedom.effect;
+package com.ufreedom.uikit.effect;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -7,8 +7,8 @@ import android.animation.ValueAnimator;
 
 import com.facebook.rebound.SimpleSpringListener;
 import com.facebook.rebound.Spring;
-import com.ufreedom.BaseFloatingPathAnimator;
-import com.ufreedom.FloatingTextView;
+import com.ufreedom.uikit.BaseFloatingPathAnimator;
+import com.ufreedom.uikit.FloatingTextView;
 
 /**
  * Author UFreedom

@@ -1,4 +1,4 @@
-package com.ufreedom;
+package com.ufreedom.uikit;
 
 import android.content.Context;
 import android.graphics.Canvas;

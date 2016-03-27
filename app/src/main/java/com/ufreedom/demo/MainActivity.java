@@ -1,14 +1,14 @@
-package com.ufreedom.floatingtext;
+package com.ufreedom.demo;
 
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.ufreedom.FloatingText;
-import com.ufreedom.effect.CurveFloatingPathEffect;
-import com.ufreedom.effect.CurvePathFloatingAnimator;
-import com.ufreedom.effect.ScaleFloatingAnimator;
+import com.ufreedom.uikit.FloatingText;
+import com.ufreedom.uikit.effect.CurveFloatingPathEffect;
+import com.ufreedom.uikit.effect.CurvePathFloatingAnimator;
+import com.ufreedom.uikit.effect.ScaleFloatingAnimator;
 
 public class MainActivity extends AppCompatActivity {
 

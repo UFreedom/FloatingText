@@ -1,4 +1,4 @@
-package com.ufreedom;
+package com.uikit;
 
 import org.junit.Test;
 

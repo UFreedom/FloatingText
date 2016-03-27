@@ -1,11 +1,11 @@
-package com.ufreedom;
+package com.ufreedom.uikit;
 
 import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 
-import com.ufreedom.effect.TranslateFloatingAnimator;
+import com.ufreedom.uikit.effect.TranslateFloatingAnimator;
 
 /**
  * Author UFreedom

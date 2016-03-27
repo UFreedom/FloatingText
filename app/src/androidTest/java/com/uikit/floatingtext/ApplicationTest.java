@@ -1,4 +1,4 @@
-package com.ufreedom.floatingtext;
+package com.uikit.floatingtext;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

@@ -1,10 +1,10 @@
-package com.ufreedom.effect;
+package com.ufreedom.uikit.effect;
 
 import com.facebook.rebound.Spring;
 import com.facebook.rebound.SpringConfig;
 import com.facebook.rebound.SpringSystem;
 import com.facebook.rebound.SpringUtil;
-import com.ufreedom.FloatingAnimator;
+import com.ufreedom.uikit.FloatingAnimator;
 
 /**
  * Author UFreedom
