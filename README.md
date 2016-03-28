@@ -218,9 +218,9 @@ public class CurvePathFloatingAnimator extends BaseFloatingPathAnimator {
 
 # Changelog
 
-### Version: 1.0
+### Version: 0.1.0
 
-    * Initial Build
+* Initial Build
 
 
 
