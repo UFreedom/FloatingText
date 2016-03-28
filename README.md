@@ -1,6 +1,7 @@
 # FloatingText
 
-[![Build Status](https://travis-ci.org/UFreedom/FloatingText.svg?branch=master)](https://travis-ci.org/UFreedom/FloatingText)
+[![Build Status](https://travis-ci.org/UFreedom/FloatingText.svg?branch=master)](https://travis-ci.org/UFreedom/FloatingText) [ ![Download](https://api.bintray.com/packages/ufreedom/maven/FloatingTextLibrary/images/download.svg) ](https://bintray.com/ufreedom/maven/FloatingTextLibrary/_latestVersion)
+
 
 FloatingText is a text widget that can floating above view with animation .
 
@@ -16,10 +17,10 @@ Now we have 'Scale Floating','Scale Floating','Curve Floating',and you can also 
 
 ![Requirements](https://img.shields.io/badge/Requirements-Android%203.0%2B-green.svg)
 
-## Download [ ![Download](https://api.bintray.com/packages/ufreedom/maven/FloatingTextLibrary/images/download.svg) ](https://bintray.com/ufreedom/maven/FloatingTextLibrary/_latestVersion)
 
+## Usage:
 
-Add Snapshot repository and add to dependencies:
+1.Add Snapshot repository and add to dependencies:
 
 ```
 dependencies {
@@ -29,11 +30,7 @@ dependencies {
 
 ```
 
-
-## Usage:
-
-
-1. Use FloatingText.FloatingTextBuilder to create a FloatingText：
+2. Use FloatingText.FloatingTextBuilder to create a FloatingText：
 
 ```
 
@@ -52,7 +49,7 @@ floatingText.attach2Window(); // let FloatingText attached to the Window
 
 ```
 
-2.Start floating
+3.Start floating
 
 ```
              floatingText.startFloating(View); // FloatingText do floating animation relate to the view
