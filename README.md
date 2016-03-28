@@ -12,10 +12,10 @@ Now we have 'Scale Floating','Scale Floating','Curve Floating',and you can also 
 
 <img src="/demo.gif" width="270" height="480" />
 
+# Compatibility ![Requirements](https://img.shields.io/badge/Requirements-Android%203.0%2B-green.svg)
 
-## Requirements
-
-![Requirements](https://img.shields.io/badge/Requirements-Android%203.0%2B-green.svg)
+  * Library - Android Honeycomb 3.0+
+  * Sample - Android Honeycomb 3.0+
 
 
 ## Usage:
@@ -215,6 +215,12 @@ public class CurvePathFloatingAnimator extends BaseFloatingPathAnimator {
 
   get the current animated path value ,[0] is x，[1] is y.
 
+
+# Changelog
+
+### Version: 1.0
+
+    * Initial Build
 
 
 
