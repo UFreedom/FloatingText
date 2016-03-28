@@ -151,7 +151,7 @@ public interface FloatingPathEffect {
 ```
 
 create a path  and then  use `FloatingPath.create(Path path, boolean forceClose)` to create FloatingPath.
-if the forceClose's value of the second param forceClose's value is true,the path will be forced to close .
+if the forceClose's value is true,the path will be forced to close .
 
 For example：CurveFloatingPathEffect :
 
