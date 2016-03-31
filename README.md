@@ -1,6 +1,6 @@
 # FloatingText
 
-[![Build Status](https://travis-ci.org/UFreedom/FloatingText.svg?branch=master)](https://travis-ci.org/UFreedom/FloatingText) [ ![Download](https://api.bintray.com/packages/ufreedom/maven/FloatingTextLibrary/images/download.svg) ](https://bintray.com/ufreedom/maven/FloatingTextLibrary/_latestVersion)
+[![Build Status](https://travis-ci.org/UFreedom/FloatingText.svg?branch=master)](https://travis-ci.org/UFreedom/FloatingText) [ [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-FloatingText-green.svg?style=true)](https://android-arsenal.com/details/1/3360) ![Download](https://api.bintray.com/packages/ufreedom/maven/FloatingTextLibrary/images/download.svg) ](https://bintray.com/ufreedom/maven/FloatingTextLibrary/_latestVersion)
 
 
 FloatingText is a text widget that can floating above view with animation .
