@@ -22,7 +22,7 @@ Now we have 'Scale Floating','Scale Floating','Curve Floating',and you can also 
 
 1.Add Snapshot repository and add to dependencies:
 
-```
+```groovy
 dependencies {
 
      compile 'com.ufreedom.uikit:FloatingTextLibrary:0.1.0'
@@ -32,8 +32,7 @@ dependencies {
 
 2. Use FloatingText.FloatingTextBuilder to create a FloatingText：
 
-```
-
+```java
  FloatingText   floatingText = new FloatingText.FloatingTextBuilder(Activity)
                                .textColor(Color.RED) // floating  text color
                                .textSize(100)   // floating  text size
@@ -45,14 +44,12 @@ dependencies {
                                .build();
 
 floatingText.attach2Window(); // let FloatingText attached to the Window
-
-
 ```
 
 3.Start floating
 
-```
-             floatingText.startFloating(View); // FloatingText do floating animation relate to the view
+```java
+floatingText.startFloating(View); // FloatingText do floating animation relate to the view
 ```
 
 
@@ -69,13 +66,10 @@ floatingText.attach2Window(); // let FloatingText attached to the Window
 
  Implements `FloatingAnimator` interface and do animation in the `applyFloatingAnimation` method：
 
-```
+```java
 public interface FloatingAnimator {
-
      public void applyFloatingAnimation(FloatingTextView view);
-
- }
-
+}
 ```
 
 **[ReboundFloatingAnimator](https://github.com/UFreedom/FloatingText/blob/master/FloatingTextLibrary%2Fsrc%2Fmain%2Fjava%2Fcom%2Fufreedom%2Feffect%2FReboundFloatingAnimator.java)**
@@ -96,7 +90,7 @@ In this library : [ScaleFloatingAnimator](https://github.com/UFreedom/FloatingTe
 
 For example : `ScaleFloatingAnimator`
 
-```
+```java
 public class ScaleFloatingAnimator extends ReboundFloatingAnimator {
 
     public long duration;
@@ -132,7 +126,6 @@ public class ScaleFloatingAnimator extends ReboundFloatingAnimator {
     }
 
 }
-
 ```
 
 #### 3.Floating Path
@@ -140,14 +133,13 @@ public class ScaleFloatingAnimator extends ReboundFloatingAnimator {
 Implements `FloatingPathEffect` and `FloatingPathAnimator` interface can custom you own floating path animation.
 
 - `FloatingPath` is the floating path
-```
 
+```java
 public interface FloatingPathEffect {
 
     abstract FloatingPath getFloatingPath(FloatingTextView floatingTextView);
 
 }
-
 ```
 
 create a path  and then  use `FloatingPath.create(Path path, boolean forceClose)` to create FloatingPath.
@@ -155,7 +147,7 @@ if the forceClose's value is true,the path will be forced to close .
 
 For example：CurveFloatingPathEffect :
 
-```
+```java
 public class CurveFloatingPathEffect implements FloatingPathEffect {
 
   @Override
@@ -166,10 +158,7 @@ public class CurveFloatingPathEffect implements FloatingPathEffect {
          path.quadTo(200, -400, 0, -500);
          return FloatingPath.create(path, false);
      }
-
 }
-
-
 ```
 
 ####  4.Floating Path Animation
@@ -179,7 +168,7 @@ After use  `FloatingPathEffect` to define the path,Then you should implements th
 For example: `CurvePathFloatingAnimator` ：
 
 
-```
+```java
 public class CurvePathFloatingAnimator extends BaseFloatingPathAnimator {
 
     @Override
