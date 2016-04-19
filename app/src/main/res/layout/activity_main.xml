@@ -12,17 +12,16 @@
     tools:context="com.uikit.floatingtext.MainActivity">
 
 
-    <ImageButton
+    <Button
         android:id="@+id/normalView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:src="@drawable/bg_blue"
         android:text="Translate Floating" />
 
-    <ImageButton
+    <Button
         android:id="@+id/curveView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,11 +29,10 @@
         android:layout_below="@id/normalView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        android:src="@drawable/bg_red"
         android:text="Curve Floating" />
 
 
-    <ImageButton
+    <Button
         android:id="@+id/scaleView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,7 +40,6 @@
         android:layout_below="@id/curveView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        android:src="@drawable/bg_green"
         android:text="Scale Floating" />
 
 
