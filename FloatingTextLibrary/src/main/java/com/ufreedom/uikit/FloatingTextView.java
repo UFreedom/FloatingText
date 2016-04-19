@@ -128,9 +128,7 @@ public class FloatingTextView extends TextView {
                         }
                     });
         }
-
-
-        setBackgroundColor(getResources().getColor(R.color.accent_material_light));
+        
         FloatingPathEffect floatingPathEffect = floatingTextBuilder.getFloatingPathEffect();
         if (floatingPathEffect != null) {
             FloatingPath floatingPath = floatingPathEffect.getFloatingPath(FloatingTextView.this);
