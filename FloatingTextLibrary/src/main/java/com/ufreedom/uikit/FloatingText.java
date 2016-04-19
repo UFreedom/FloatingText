@@ -40,12 +40,13 @@ public class FloatingText {
             floatingTextWrapper = new FrameLayout(mFloatingTextBuilder.getActivity());
             floatingTextWrapper.setId(R.id.FloatingText_wrapper);
             rootView.addView(floatingTextWrapper);
-            floatingTextWrapper.bringToFront();
         }
+
 
         mFloatingTextView = new FloatingTextView(mFloatingTextBuilder.getActivity());
 
         // add view to floatingTextWrapper
+        floatingTextWrapper.bringToFront();
         floatingTextWrapper.addView(mFloatingTextView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         mFloatingTextView.setFloatingTextBuilder(mFloatingTextBuilder);
 
