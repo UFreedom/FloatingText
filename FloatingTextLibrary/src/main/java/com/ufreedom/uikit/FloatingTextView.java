@@ -87,6 +87,7 @@ public class FloatingTextView extends TextView {
             super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         }
 
+        fixPosition();
         isMeasured = true;
     }
 
@@ -105,6 +106,7 @@ public class FloatingTextView extends TextView {
     public void flyText(View view) {
         mAttachedView = view;
         Log.i(TAG, "flyText: called");
+
         if(isMeasured){
             fixPosition();
         } else {
@@ -126,29 +128,9 @@ public class FloatingTextView extends TextView {
                         }
                     });
         }
-    }
 
-    private void fixPosition() {
-
-        Rect rect = new Rect();
-        mAttachedView.getGlobalVisibleRect(rect);
-        int[] location = new int[2];
-        ((ViewGroup) getParent()).getLocationOnScreen(location);
-        rect.offset(-location[0], -location[1]);
-
-        int topMargin = rect.top + ((mAttachedView.getHeight() - getMeasuredHeight()) / 2) + floatingTextBuilder.getOffsetY();
-        int leftMargin = rect.left + ((mAttachedView.getWidth() - getMeasuredWidth()) / 2) + floatingTextBuilder.getOffsetX();
-
-        FrameLayout.LayoutParams lp = ((FrameLayout.LayoutParams) getLayoutParams());
-        lp.topMargin = topMargin;
-        lp.leftMargin = leftMargin;
-        setLayoutParams(lp);
-
-        Log.i(TAG, "flyText: width " + mAttachedView.getWidth() + " getMeasuredWidth: " + getMeasuredWidth() + " x: " + leftMargin);
-        Log.i(TAG, "flyText: height " + mAttachedView.getHeight() + " getMeasuredHeight: " + getMeasuredHeight() + " y: " + topMargin);
 
         setBackgroundColor(getResources().getColor(R.color.accent_material_light));
-
         FloatingPathEffect floatingPathEffect = floatingTextBuilder.getFloatingPathEffect();
         if (floatingPathEffect != null) {
             FloatingPath floatingPath = floatingPathEffect.getFloatingPath(FloatingTextView.this);
@@ -157,7 +139,30 @@ public class FloatingTextView extends TextView {
 
         FloatingAnimator floatingAnimator = floatingTextBuilder.getFloatingAnimator();
         floatingAnimator.applyFloatingAnimation(FloatingTextView.this);
+    }
 
+    private void fixPosition() {
+        if(mAttachedView == null)
+            return;
+
+        if(!positionSet) {
+            Rect rect = new Rect();
+            mAttachedView.getGlobalVisibleRect(rect);
+            int[] location = new int[2];
+            ((ViewGroup) getParent()).getLocationOnScreen(location);
+            rect.offset(-location[0], -location[1]);
+
+            int topMargin = rect.top + ((mAttachedView.getHeight() - getMeasuredHeight()) / 2) + floatingTextBuilder.getOffsetY();
+            int leftMargin = rect.left + ((mAttachedView.getWidth() - getMeasuredWidth()) / 2) + floatingTextBuilder.getOffsetX();
+
+            FrameLayout.LayoutParams lp = ((FrameLayout.LayoutParams) getLayoutParams());
+            lp.topMargin = topMargin;
+            lp.leftMargin = leftMargin;
+            setLayoutParams(lp);
+
+            Log.i(TAG, "flyText: width " + mAttachedView.getWidth() + " getMeasuredWidth: " + getMeasuredWidth() + " x: " + leftMargin);
+            Log.i(TAG, "flyText: height " + mAttachedView.getHeight() + " getMeasuredHeight: " + getMeasuredHeight() + " y: " + topMargin);
+        }
         positionSet = true;
     }
 
@@ -182,15 +187,17 @@ public class FloatingTextView extends TextView {
 
     @Override
     public void draw(Canvas canvas) {
-
         if (!isMeasured || !positionSet)
             return;
+
         Log.i(TAG, "draw: isMeasured:" + isMeasured + " positionSet:" + positionSet);
         super.draw(canvas);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
+        if (!isMeasured || !positionSet)
+            return;
 
         super.onDraw(canvas);
         if (floatingTextBuilder == null || mAttachedView == null) {
