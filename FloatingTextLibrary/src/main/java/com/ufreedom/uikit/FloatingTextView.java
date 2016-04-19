@@ -105,7 +105,6 @@ public class FloatingTextView extends TextView {
     public void flyText(View view) {
         mAttachedView = view;
         Log.i(TAG, "flyText: called");
-
         if(isMeasured){
             fixPosition();
         } else {
@@ -130,21 +129,20 @@ public class FloatingTextView extends TextView {
     }
 
     private void fixPosition() {
-        positionSet = true;
+
         Rect rect = new Rect();
         mAttachedView.getGlobalVisibleRect(rect);
         int[] location = new int[2];
         ((ViewGroup) getParent()).getLocationOnScreen(location);
         rect.offset(-location[0], -location[1]);
 
-        int topMargin = rect.top + Math.abs((mAttachedView.getHeight() - getMeasuredHeight()) / 2) + floatingTextBuilder.getOffsetY();
-        int leftMargin = rect.left + Math.abs((mAttachedView.getWidth() - getMeasuredWidth()) / 2) + floatingTextBuilder.getOffsetX();
+        int topMargin = rect.top + ((mAttachedView.getHeight() - getMeasuredHeight()) / 2) + floatingTextBuilder.getOffsetY();
+        int leftMargin = rect.left + ((mAttachedView.getWidth() - getMeasuredWidth()) / 2) + floatingTextBuilder.getOffsetX();
 
         FrameLayout.LayoutParams lp = ((FrameLayout.LayoutParams) getLayoutParams());
         lp.topMargin = topMargin;
         lp.leftMargin = leftMargin;
         setLayoutParams(lp);
-
 
         Log.i(TAG, "flyText: width " + mAttachedView.getWidth() + " getMeasuredWidth: " + getMeasuredWidth() + " x: " + leftMargin);
         Log.i(TAG, "flyText: height " + mAttachedView.getHeight() + " getMeasuredHeight: " + getMeasuredHeight() + " y: " + topMargin);
@@ -160,7 +158,7 @@ public class FloatingTextView extends TextView {
         FloatingAnimator floatingAnimator = floatingTextBuilder.getFloatingAnimator();
         floatingAnimator.applyFloatingAnimation(FloatingTextView.this);
 
-        isMeasured = true;
+        positionSet = true;
     }
 
     private void initTextStyle() {
@@ -183,12 +181,16 @@ public class FloatingTextView extends TextView {
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
-
-        Log.i(TAG, "onDraw: isMeasured: " + isMeasured);
+    public void draw(Canvas canvas) {
 
         if (!isMeasured || !positionSet)
             return;
+        Log.i(TAG, "draw: isMeasured:" + isMeasured + " positionSet:" + positionSet);
+        super.draw(canvas);
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
 
         super.onDraw(canvas);
         if (floatingTextBuilder == null || mAttachedView == null) {
