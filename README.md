@@ -25,7 +25,7 @@ Now we have 'Scale Floating','Scale Floating','Curve Floating',and you can also 
 ```groovy
 dependencies {
 
-     compile 'com.ufreedom.uikit:FloatingTextLibrary:0.1.0'
+     compile 'com.ufreedom.uikit:FloatingTextLibrary:0.2.0'
 }
 
 ```
