@@ -145,11 +145,11 @@ public class FloatingText {
         public FloatingText build() {
 
             if (activity == null) {
-                throw new NullPointerException("activity show not be null");
+                throw new NullPointerException("activity should not be null");
             }
 
             if (textContent == null) {
-                throw new NullPointerException("textContent show not be null");
+                throw new NullPointerException("textContent should not be null");
             }
 
             if (floatingAnimator == null) {
