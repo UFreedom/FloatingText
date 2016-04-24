@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.FrameLayout;
 
 import com.ufreedom.uikit.effect.TranslateFloatingAnimator;
 
@@ -14,7 +15,8 @@ public class FloatingText {
 
     private FloatingTextBuilder mFloatingTextBuilder;
     private FloatingTextView mFloatingTextView;
-    
+    private FrameLayout floatingTextWrapper;
+
 
     protected FloatingText(FloatingTextBuilder floatingTextBuilder) {
         this.mFloatingTextBuilder = floatingTextBuilder;
@@ -27,11 +29,27 @@ public class FloatingText {
 
 
     public FloatingTextView attach2Window() {
+
         ViewGroup rootView = (ViewGroup) mFloatingTextBuilder.getActivity().findViewById(Window.ID_ANDROID_CONTENT);
+
+        // get wrapper from activity
+        floatingTextWrapper = (FrameLayout) mFloatingTextBuilder.getActivity().findViewById(R.id.FloatingText_wrapper);
+
+        // if activity does not yet have a floatingText wrapper, we add one
+        if(floatingTextWrapper == null){
+            floatingTextWrapper = new FrameLayout(mFloatingTextBuilder.getActivity());
+            floatingTextWrapper.setId(R.id.FloatingText_wrapper);
+            rootView.addView(floatingTextWrapper);
+        }
+
+
         mFloatingTextView = new FloatingTextView(mFloatingTextBuilder.getActivity());
-        rootView.addView(mFloatingTextView, new ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+
+        // add view to floatingTextWrapper
+        floatingTextWrapper.bringToFront();
+        floatingTextWrapper.addView(mFloatingTextView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         mFloatingTextView.setFloatingTextBuilder(mFloatingTextBuilder);
+
         return mFloatingTextView;
     }
 

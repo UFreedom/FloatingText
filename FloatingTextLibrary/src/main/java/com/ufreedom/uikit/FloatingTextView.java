@@ -6,15 +6,17 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PathMeasure;
 import android.graphics.Rect;
+import android.os.Build;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 /**
  * UFreedom
- * 
- * 
  */
 public class FloatingTextView extends TextView {
 
@@ -23,11 +25,13 @@ public class FloatingTextView extends TextView {
 
     private FloatingText.FloatingTextBuilder floatingTextBuilder;
     private Paint mTextPaint;
- 
+
     private Paint mPathPaint;
     private PathMeasure mPathMeasure;
     private View mAttachedView;
-    
+    private boolean isMeasured;
+    private boolean positionSet;
+
 
     public FloatingTextView(Context context) {
         this(context, null);
@@ -57,18 +61,18 @@ public class FloatingTextView extends TextView {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 
-        
-        if (floatingTextBuilder == null ){
+
+        if (floatingTextBuilder == null) {
             super.onMeasure(widthMeasureSpec, heightMeasureSpec);
             return;
         }
-        
+
         int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
 
-        int widthPaddingOffset =   getPaddingLeft() + getPaddingRight();
+        int widthPaddingOffset = getPaddingLeft() + getPaddingRight();
         if (widthMode == MeasureSpec.AT_MOST && heightMode == MeasureSpec.AT_MOST) {
             float maxWidth = getDesireWidth(mTextPaint);
             Paint.FontMetricsInt fmi = mTextPaint.getFontMetricsInt();
@@ -82,11 +86,14 @@ public class FloatingTextView extends TextView {
         } else {
             super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         }
+
+        fixPosition();
+        isMeasured = true;
     }
 
 
-    private  float getDesireWidth(Paint mTextPaint) {
-       return mTextPaint.measureText(floatingTextBuilder.getTextContent());
+    private float getDesireWidth(Paint mTextPaint) {
+        return mTextPaint.measureText(floatingTextBuilder.getTextContent());
     }
 
 
@@ -96,37 +103,65 @@ public class FloatingTextView extends TextView {
     }
 
 
-    
     public void flyText(View view) {
-
-        layout(0,0,0,0);
-
         mAttachedView = view;
+        Log.i(TAG, "flyText: called");
 
-        Rect rect = new Rect();
-        mAttachedView.getGlobalVisibleRect(rect);
-        int[] location = new int[2];
-        getLocationOnScreen(location);
-        rect.offset(-location[0], -location[1]);
-        
-        
-        int left = rect.left + (rect.width() - getMeasuredWidth()) / 2 + floatingTextBuilder.getOffsetX();
-        int top = rect.top + (rect.height() - getMeasuredHeight()) / 2 + + floatingTextBuilder.getOffsetY();
-        int bottom = top + getMeasuredHeight();
-        int right = left + getMeasuredWidth();
+        if(isMeasured){
+            fixPosition();
+        } else {
 
-        layout(left,top,right,bottom);
-        invalidate();
-        
-        FloatingPathEffect floatingPathEffect = floatingTextBuilder.getFloatingPathEffect();
-        if (floatingPathEffect != null){
-            FloatingPath floatingPath = floatingPathEffect.getFloatingPath(this);
-            mPathMeasure = floatingPath.getPathMeasure();
+            // wait on measure
+            getViewTreeObserver()
+                    .addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                        @Override
+                        public void onGlobalLayout() {
+                            Log.i(TAG, "onGlobalLayout: called");
+
+                            if (Build.VERSION.SDK_INT < 16) {
+                                FloatingTextView.this.getViewTreeObserver().removeGlobalOnLayoutListener(this);
+                            } else {
+                                FloatingTextView.this.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                            }
+
+                            fixPosition();
+                        }
+                    });
         }
         
+        FloatingPathEffect floatingPathEffect = floatingTextBuilder.getFloatingPathEffect();
+        if (floatingPathEffect != null) {
+            FloatingPath floatingPath = floatingPathEffect.getFloatingPath(FloatingTextView.this);
+            mPathMeasure = floatingPath.getPathMeasure();
+        }
+
         FloatingAnimator floatingAnimator = floatingTextBuilder.getFloatingAnimator();
-        floatingAnimator.applyFloatingAnimation(this);
-        
+        floatingAnimator.applyFloatingAnimation(FloatingTextView.this);
+    }
+
+    private void fixPosition() {
+        if(mAttachedView == null)
+            return;
+
+        if(!positionSet) {
+            Rect rect = new Rect();
+            mAttachedView.getGlobalVisibleRect(rect);
+            int[] location = new int[2];
+            ((ViewGroup) getParent()).getLocationOnScreen(location);
+            rect.offset(-location[0], -location[1]);
+
+            int topMargin = rect.top + ((mAttachedView.getHeight() - getMeasuredHeight()) / 2) + floatingTextBuilder.getOffsetY();
+            int leftMargin = rect.left + ((mAttachedView.getWidth() - getMeasuredWidth()) / 2) + floatingTextBuilder.getOffsetX();
+
+            FrameLayout.LayoutParams lp = ((FrameLayout.LayoutParams) getLayoutParams());
+            lp.topMargin = topMargin;
+            lp.leftMargin = leftMargin;
+            setLayoutParams(lp);
+
+            Log.i(TAG, "flyText: width " + mAttachedView.getWidth() + " getMeasuredWidth: " + getMeasuredWidth() + " x: " + leftMargin);
+            Log.i(TAG, "flyText: height " + mAttachedView.getHeight() + " getMeasuredHeight: " + getMeasuredHeight() + " y: " + topMargin);
+        }
+        positionSet = true;
     }
 
     private void initTextStyle() {
@@ -135,33 +170,42 @@ public class FloatingTextView extends TextView {
     }
 
 
-    
-    public View getAttachedView(){
+    public View getAttachedView() {
         return mAttachedView;
     }
 
-    public PathMeasure getPathMeasure(){
+    public PathMeasure getPathMeasure() {
         return mPathMeasure;
     }
-    
-    public void dettachFromWindow(){
-       ViewGroup viewParent = (ViewGroup) getParent();
-       viewParent.removeView(this);
+
+    public void dettachFromWindow() {
+        ViewGroup viewParent = (ViewGroup) getParent();
+        viewParent.removeView(this);
     }
-    
-    
+
+    @Override
+    public void draw(Canvas canvas) {
+        if (!isMeasured || !positionSet)
+            return;
+
+        Log.i(TAG, "draw: isMeasured:" + isMeasured + " positionSet:" + positionSet);
+        super.draw(canvas);
+    }
 
     @Override
     protected void onDraw(Canvas canvas) {
+        if (!isMeasured || !positionSet)
+            return;
+
         super.onDraw(canvas);
         if (floatingTextBuilder == null || mAttachedView == null) {
             return;
         }
-        
+
         float x = (float) (getWidth() / 2.0);
         float y = (float) (getHeight() / 2.0);
         Paint.FontMetricsInt fmi = mTextPaint.getFontMetricsInt();
         float baseline = (float) (y - (fmi.bottom / 2.0 + fmi.top / 2.0));
-        canvas.drawText(floatingTextBuilder.getTextContent(), x, baseline , mTextPaint);
+        canvas.drawText(floatingTextBuilder.getTextContent(), x, baseline, mTextPaint);
     }
 }
