@@ -207,6 +207,12 @@ public class CurvePathFloatingAnimator extends BaseFloatingPathAnimator {
 
 # Changelog
 
+
+### Version: 0.2.0
+
+* Fix the position bug - Thanks [MarsVard](https://github.com/MarsVard) contribution
+
+
 ### Version: 0.1.0
 
 * Initial Build
