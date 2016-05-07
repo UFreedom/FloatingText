@@ -18,23 +18,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        final View normalView = findViewById(R.id.normalView);
-        final FloatingText   normalFloatingText = new FloatingText.FloatingTextBuilder(MainActivity.this)
+ 
+        final View layoutTranslateFloating = findViewById(R.id.layoutTranslateView);
+        final View translateFloatingView = findViewById(R.id.translateView);
+        final FloatingText   translateFloatingText = new FloatingText.FloatingTextBuilder(MainActivity.this)
                 .textColor(Color.RED)
                 .textSize(100)
                 .textContent("+1000")
                 .build();
-        normalFloatingText.attach2Window();
+        translateFloatingText.attach2Window();
         
-        assert normalView != null;
-        normalView.setOnClickListener(new View.OnClickListener() {
+        assert layoutTranslateFloating != null;
+        layoutTranslateFloating.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                normalFloatingText.startFloating(view);
+                translateFloatingText.startFloating(translateFloatingView);
             }
         });
 
+        
         final FloatingText  cubicFloatingText = new FloatingText.FloatingTextBuilder(MainActivity.this)
                 .textColor(Color.RED)
                 .textSize(100)
@@ -43,21 +45,23 @@ public class MainActivity extends AppCompatActivity {
                 .textContent("Hello! ").build();
         cubicFloatingText.attach2Window();
 
-
-        View curveView = findViewById(R.id.curveView);
-
+        
+        View layoutCurveView = findViewById(R.id.layoutCurveView);
+        final View curveView = findViewById(R.id.curveView);
         assert curveView != null;
-        curveView.setOnClickListener(new View.OnClickListener() {
+        assert layoutCurveView != null;
+        layoutCurveView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cubicFloatingText.startFloating(view);
+                cubicFloatingText.startFloating(curveView);
             }
         });
+
         
-        View scaleView = findViewById(R.id.scaleView);
-        
+        View layoutScaleView = findViewById(R.id.layoutScaleView);
+        final View scaleView = findViewById(R.id.scaleView);
         final FloatingText  scaleFloatingText = new FloatingText.FloatingTextBuilder(MainActivity.this)
-                .textColor(Color.RED)
+                .textColor(Color.parseColor("#7ED321"))
                 .textSize(100)
                 .offsetY(-100)
                 .floatingAnimatorEffect(new ScaleFloatingAnimator())
@@ -65,10 +69,11 @@ public class MainActivity extends AppCompatActivity {
         scaleFloatingText.attach2Window();
 
         assert scaleView != null;
-        scaleView.setOnClickListener(new View.OnClickListener() {
+        assert layoutScaleView != null;
+        layoutScaleView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                scaleFloatingText.startFloating(view);
+                scaleFloatingText.startFloating(scaleView);
             }
         });
         

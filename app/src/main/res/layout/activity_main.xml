@@ -9,38 +9,73 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.uikit.floatingtext.MainActivity">
+    tools:context=".MainActivity">
 
 
-    <Button
-        android:id="@+id/normalView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <FrameLayout
+        android:id="@+id/layoutTranslateView"
+        android:layout_width="234.4dp"
+        android:layout_height="80dp"
         android:layout_alignParentLeft="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:text="Translate Floating" />
+        android:background="@drawable/bg_translate">
 
-    <Button
-        android:id="@+id/curveView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        <TextView
+            android:id="@+id/translateView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:text="Translate Floating"
+            android:textColor="@android:color/white" />
+
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/layoutCurveView"
+        android:layout_width="234.4dp"
+        android:layout_height="80dp"
         android:layout_alignParentLeft="true"
-        android:layout_below="@id/normalView"
+        android:layout_below="@id/layoutTranslateView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        android:text="Curve Floating" />
+        android:background="@drawable/bg_curve">
+
+        <TextView
+            android:id="@+id/curveView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Curve Floating"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@android:color/white" />
+
+    </FrameLayout>
 
 
-    <Button
-        android:id="@+id/scaleView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <FrameLayout
+        android:id="@+id/layoutScaleView"
+        android:layout_width="234.4dp"
+        android:layout_height="80dp"
         android:layout_alignParentLeft="true"
-        android:layout_below="@id/curveView"
+        android:layout_below="@id/layoutCurveView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:text="Scale Floating" />
+        android:layout_marginTop="40dp"
+        android:background="@drawable/bg_scale">
+
+        <TextView
+            android:id="@+id/scaleView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:text="Scale Floating"
+            android:textColor="@android:color/white" />
+
+
+    </FrameLayout>
 
 
 </RelativeLayout>
