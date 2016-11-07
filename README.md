@@ -1,3 +1,8 @@
+# DEPRECATED
+
+I have develop the [FloatingView](https://github.com/UFreedom/FloatingView) ,FloatingView can make the target view floating above the anchor view with cool animation.FloatingText do the same thing, FloatingView can do, and FloatingView more convenient and powerful.so you can use FloatingView instead of FloatingText.
+ 
+
 # FloatingText
 
 [![Build Status](https://travis-ci.org/UFreedom/FloatingText.svg?branch=master)](https://travis-ci.org/UFreedom/FloatingText) [ [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-FloatingText-green.svg?style=true)](https://android-arsenal.com/details/1/3360) ![Download](https://api.bintray.com/packages/ufreedom/maven/FloatingTextLibrary/images/download.svg) ](https://bintray.com/ufreedom/maven/FloatingTextLibrary/_latestVersion)
