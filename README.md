@@ -1,6 +1,6 @@
 # DEPRECATED
 
-I have develop the [FloatingView](https://github.com/UFreedom/FloatingView) ,FloatingView can make the target view floating above the anchor view with cool animation.FloatingText do the same thing, FloatingView can do, and FloatingView more convenient and powerful.so you can use FloatingView instead of FloatingText.
+I have developed the [FloatingView](https://github.com/UFreedom/FloatingView) ,FloatingView can make the target view floating above the anchor view with cool animation.FloatingText do the same thing, FloatingView can do, and FloatingView more convenient and powerful.so you can use FloatingView instead of FloatingText.
  
 
 # FloatingText
